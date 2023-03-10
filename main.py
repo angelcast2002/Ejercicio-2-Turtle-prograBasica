@@ -4,9 +4,6 @@ import random as r
 
 
 def main():
-    pintarRectangulo(0,0,1,100,55)
-    pintarRectangulo(100,0,1,100,90)
-    pintarTrinagulo(100,100,5,40,44)
     
     cantRectangulos = int(input("Ingrese la cantidad de rectangulos: "))
     cantTriangulos = int(input("Ingrese la cantidad de triangulos: "))
@@ -17,6 +14,28 @@ def main():
         cantTriangulos = int(input("Ingrese la cantidad de triangulos: "))
 
     lienzoTrasero()
+    contador = 1
+    while contador < cantTriangulos + 1 : 
+        x = r.randint(-250, 250)
+        y = r.randint(-250, 250)
+        tamanio = r.randint(1, 250)
+        cambioDeGrad = r.randint(1, 360)
+        if (x + tamanio < 250 and y + tamanio < 250 and x - tamanio > -250 and y - tamanio > -250):
+            pintarTrinagulo(x, y, contador, tamanio, cambioDeGrad)
+            contador += 1
+            
+    contador = 1
+    while contador < cantRectangulos + 1 : 
+        x = r.randint(-250, 250)
+        y = r.randint(-250, 250)
+        tamanio = r.randint(1, 250)
+        cambioDeGrad = r.randint(1, 360)
+        if (x + tamanio < 250 and y + tamanio < 250 and x - tamanio > -250 and y - tamanio > -250):
+            pintarRectangulo(x, y, contador, tamanio, cambioDeGrad)
+            contador += 1
+            
+    tt.done()
+    
     
 
 def lienzoTrasero():
@@ -54,7 +73,7 @@ def pintarTrinagulo(x, y, id, tamanio, cambioDeGrad):
 def pintarRectangulo(x, y, id, tamanio, cambioDeGrad):
     tt.fillcolor("black")
     if (id % 2 == 0):
-        tt.fillcolor("verde")
+        tt.fillcolor("green")
         
     
     tt.penup()
