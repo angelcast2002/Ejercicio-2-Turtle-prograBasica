@@ -5,23 +5,24 @@ import random as r
 
 def main():
     
+    
     cantRectangulos = int(input("Ingrese la cantidad de rectangulos: "))
     cantTriangulos = int(input("Ingrese la cantidad de triangulos: "))
-
+    
     while cantRectangulos < 5 or cantRectangulos > 20 and cantTriangulos < 5 or cantTriangulos > 20:
         print ("Error, ingrese un numero entre 5 y 20")
         cantRectangulos = int(input("Ingrese la cantidad de rectangulos: "))
         cantTriangulos = int(input("Ingrese la cantidad de triangulos: "))
 
+    tt.speed("fast")
     lienzoTrasero()
     contador = 1
     while contador < cantTriangulos + 1 : 
         x = r.randint(-250, 250)
         y = r.randint(-250, 250)
         tamanio = r.randint(1, 250)
-        cambioDeGrad = r.randint(1, 360)
-        if (x + tamanio < 250 and y + tamanio < 250 and x - tamanio > -250 and y - tamanio > -250):
-            pintarTrinagulo(x, y, contador, tamanio, cambioDeGrad)
+        if ((x + tamanio) < 250 and (y + tamanio) < 250):
+            pintarTrinagulo(x, y, contador, tamanio)
             contador += 1
             
     contador = 1
@@ -29,9 +30,8 @@ def main():
         x = r.randint(-250, 250)
         y = r.randint(-250, 250)
         tamanio = r.randint(1, 250)
-        cambioDeGrad = r.randint(1, 360)
-        if (x + tamanio < 250 and y + tamanio < 250 and x - tamanio > -250 and y - tamanio > -250):
-            pintarRectangulo(x, y, contador, tamanio, cambioDeGrad)
+        if ((x + tamanio*1.5) < 250 and (y + tamanio) < 250):
+            pintarRectangulo(x, y, contador, tamanio)
             contador += 1
             
     tt.done()
@@ -51,7 +51,7 @@ def lienzoTrasero():
     tt.end_fill()
     
     
-def pintarTrinagulo(x, y, id, tamanio, cambioDeGrad):
+def pintarTrinagulo(x, y, id, tamanio):
     if (id % 3 == 0):
         tt.fillcolor("red")
     elif (id % 5 == 0):
@@ -63,14 +63,13 @@ def pintarTrinagulo(x, y, id, tamanio, cambioDeGrad):
     tt.goto(x, y)
     tt.pendown()
     tt.begin_fill()
-    tt.left(cambioDeGrad)
     for i in range(3):
         tt.forward(tamanio)
         tt.left(120)
     
     tt.end_fill()
 
-def pintarRectangulo(x, y, id, tamanio, cambioDeGrad):
+def pintarRectangulo(x, y, id, tamanio):
     tt.fillcolor("black")
     if (id % 2 == 0):
         tt.fillcolor("green")
@@ -80,7 +79,6 @@ def pintarRectangulo(x, y, id, tamanio, cambioDeGrad):
     tt.goto(x, y)
     tt.pendown()
     tt.begin_fill()
-    tt.left(cambioDeGrad)
     for i in range(4):
         if (i % 2 == 0):
             tt.forward(tamanio * 1.5)
